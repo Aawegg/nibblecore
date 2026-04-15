@@ -1,5 +1,5 @@
 // ============================================================================
-// LLM Surgeon Sprint 4: Head-to-Head vs llama.cpp
+// NibbleCore: Head-to-Head vs llama.cpp
 // ============================================================================
 //
 // We benchmark three implementations of Q4_0 dequantization:
@@ -298,7 +298,7 @@ bool verify_match(const float* a, const float* b, int n, const char* name_a, con
 int main(int argc, char* argv[]) {
     std::printf(C_BOLD_CYAN);
     std::printf("╔══════════════════════════════════════════════════════════════╗\n");
-    std::printf("║  LLM Surgeon Sprint 4: Head-to-Head vs llama.cpp           ║\n");
+    std::printf("║  NibbleCore: Head-to-Head vs llama.cpp                      ║\n");
     std::printf("╚══════════════════════════════════════════════════════════════╝\n\n");
     std::printf(C_RESET);
 

@@ -1,5 +1,5 @@
 // ============================================================================
-// LLM Surgeon: 4-bit Quantization Kernel for Apple M4
+// NibbleCore: 4-bit Quantization Kernel for Apple M4
 // ============================================================================
 //
 // THE BIG IDEA
@@ -328,7 +328,7 @@ int main() {
     constexpr int BENCH_ITERS = 1000;
 
     std::printf("==========================================================\n");
-    std::printf("  LLM Surgeon: 4-bit Quantization Benchmark (M4 ARM)\n");
+    std::printf("  NibbleCore: 4-bit Quantization Benchmark (M4 ARM)\n");
     std::printf("==========================================================\n\n");
 
     std::printf("Configuration:\n");
@@ -416,7 +416,7 @@ int main() {
                 (1.0 - static_cast<double>(quant_bytes) / input_bytes) * 100.0);
 
     std::printf("\n==========================================================\n");
-    std::printf("  Build complete. You are now an LLM Surgeon.\n");
+    std::printf("  Build complete.\n");
     std::printf("==========================================================\n");
 
     return 0;

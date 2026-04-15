@@ -1,5 +1,5 @@
 // ============================================================================
-// LLM Surgeon: VISUAL DEMO -- Watch quantization happen in real time
+// NibbleCore: VISUAL DEMO -- Watch quantization happen in real time
 // ============================================================================
 // This is the "glass box" version. Same math as main.cpp, but it prints
 // every single step so you can see what's happening inside.
@@ -69,7 +69,7 @@ int main() {
 
     std::printf(C_BOLD C_CYAN);
     std::printf("╔══════════════════════════════════════════════════════════╗\n");
-    std::printf("║     LLM SURGEON: Live Quantization Visualizer          ║\n");
+    std::printf("║     NibbleCore: Live Quantization Visualizer            ║\n");
     std::printf("║     Watch 32 floats become 18 bytes in real time       ║\n");
     std::printf("╚══════════════════════════════════════════════════════════╝\n\n");
     std::printf(C_RESET);

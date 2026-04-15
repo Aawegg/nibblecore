@@ -1,5 +1,5 @@
 // ============================================================================
-// LLM Surgeon: GGUF Model Loader
+// NibbleCore: GGUF Model Loader
 // ============================================================================
 //
 // This is where it gets real. We open an actual model file, parse its
@@ -171,9 +171,9 @@ int main(int argc, char* argv[]) {
     const char* model_path = argv[1];
 
     // ── PHASE 1: Parse the GGUF header ──────────────────────────────
-    std::printf(C_BOLD_CYAN);
+    std::printf(C_BOLD C_CYAN);
     std::printf("╔══════════════════════════════════════════════════════════════╗\n");
-    std::printf("║  LLM Surgeon: GGUF Model Loader                            ║\n");
+    std::printf("║  NibbleCore: GGUF Model Loader                              ║\n");
     std::printf("║  Loading real neural network weights                        ║\n");
     std::printf("╚══════════════════════════════════════════════════════════════╝\n\n");
     std::printf(C_RESET);
@@ -186,7 +186,7 @@ int main(int argc, char* argv[]) {
     }
 
     // ── PHASE 2: Display model info ─────────────────────────────────
-    std::printf(C_BOLD_WHITE "═══ Model Information ═══\n" C_RESET);
+    std::printf(C_BOLD C_WHITE "═══ Model Information ═══\n" C_RESET);
     std::printf("  GGUF version:    %u\n", model.version);
     std::printf("  Tensor count:    %llu\n", model.tensor_count);
     std::printf("  Metadata keys:   %zu\n", model.metadata.size());
@@ -194,7 +194,7 @@ int main(int argc, char* argv[]) {
                 model.data_offset, format_bytes(model.data_offset).c_str());
 
     // Print interesting metadata
-    std::printf(C_BOLD_WHITE "═══ Metadata ═══\n" C_RESET);
+    std::printf(C_BOLD C_WHITE "═══ Metadata ═══\n" C_RESET);
     for (auto& [key, val] : model.metadata) {
         // Filter to interesting keys
         if (key.find("general.") == 0 ||
@@ -220,7 +220,7 @@ int main(int argc, char* argv[]) {
     }
 
     // ── PHASE 3: Tensor overview ────────────────────────────────────
-    std::printf("\n" C_BOLD_WHITE "═══ Tensors ═══\n" C_RESET);
+    std::printf("\n" C_BOLD C_WHITE "═══ Tensors ═══\n" C_RESET);
 
     uint64_t total_params = 0;
     uint64_t total_bytes = 0;
@@ -267,11 +267,11 @@ int main(int argc, char* argv[]) {
     uint64_t fp32_bytes = total_params * 4;
     std::printf("\n  " C_BOLD "If stored as float32:" C_RESET " %s\n", format_bytes(fp32_bytes).c_str());
     std::printf("  " C_BOLD "Actual quantized:    " C_RESET " %s\n", format_bytes(total_bytes).c_str());
-    std::printf("  " C_BOLD_GREEN "Compression:          %.1fx" C_RESET "\n",
+    std::printf("  " C_BOLD C_GREEN "Compression:          %.1fx" C_RESET "\n",
                 static_cast<double>(fp32_bytes) / total_bytes);
 
     // ── PHASE 4: List some tensors ──────────────────────────────────
-    std::printf("\n" C_BOLD_WHITE "═══ Tensor List (first 20) ═══\n" C_RESET);
+    std::printf("\n" C_BOLD C_WHITE "═══ Tensor List (first 20) ═══\n" C_RESET);
     std::printf("  " C_BOLD "%-45s  %-6s  %-20s  %12s\n" C_RESET,
                 "Name", "Type", "Shape", "Size");
     std::printf("  ─────────────────────────────────────────────  ──────  ────────────────────  ────────────\n");
@@ -311,7 +311,7 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    std::printf("\n" C_BOLD_WHITE "═══ Dequantizing Real Weights ═══\n" C_RESET);
+    std::printf("\n" C_BOLD C_WHITE "═══ Dequantizing Real Weights ═══\n" C_RESET);
     std::printf("  Target tensor: " C_YELLOW "%s" C_RESET "\n", target->name.c_str());
     std::printf("  Elements:      %llu\n", target->num_elements());
     std::printf("  Quantized:     %s\n", format_bytes(target->data_size()).c_str());
@@ -349,7 +349,7 @@ int main(int argc, char* argv[]) {
     Benchmark::print_throughput("  Throughput", num_elements * 4, ms);
 
     // ── PHASE 6: Analyze the weights ────────────────────────────────
-    std::printf("\n" C_BOLD_WHITE "═══ Weight Analysis ═══\n" C_RESET);
+    std::printf("\n" C_BOLD C_WHITE "═══ Weight Analysis ═══\n" C_RESET);
 
     auto stats = compute_stats(weights.data(), num_elements);
     std::printf("  Min:      " C_RED    "%+.6f" C_RESET "\n", stats.min_val);
@@ -393,7 +393,7 @@ int main(int argc, char* argv[]) {
     }
 
     // ── Summary ─────────────────────────────────────────────────────
-    std::printf("\n" C_BOLD_CYAN);
+    std::printf("\n" C_BOLD C_CYAN);
     std::printf("╔══════════════════════════════════════════════════════════════╗\n");
     std::printf("║  You just loaded and dequantized real neural network        ║\n");
     std::printf("║  weights from a production model file.                      ║\n");

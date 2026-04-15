@@ -1,8 +1,8 @@
-# LLM Surgeon
+# NibbleCore
 
 **4-bit quantization kernels for Apple Silicon, benchmarked against llama.cpp.**
 
-A from-scratch implementation of Q4_0 quantization/dequantization with NEON SIMD optimization, a GGUF model file parser, and a head-to-head comparison against llama.cpp's reference implementation. Built for and tested on Apple M4.
+From-scratch Q4_0 quantization/dequantization with NEON SIMD optimization, a GGUF model file parser, and a head-to-head comparison against llama.cpp's reference implementation. Built for and tested on Apple M4.
 
 ## Results (M4 MacBook Air)
 
@@ -13,9 +13,9 @@ Tested on real weights from SmolLM2-135M (884,736 weights from `blk.0.ffn_down.w
 | Implementation | Time (1K iters) | Throughput | vs llama.cpp |
 |---------------|----------------|-----------|-------------|
 | llama.cpp scalar (reference) | 194.96 ms | 16.91 GB/s | baseline |
-| LLM Surgeon scalar | 176.87 ms | 18.63 GB/s | 1.10x |
-| LLM Surgeon NEON v1 | 63.92 ms | 51.56 GB/s | **3.05x** |
-| LLM Surgeon NEON v2 | 57.02 ms | 57.80 GB/s | **3.42x** |
+| NibbleCore scalar | 176.87 ms | 18.63 GB/s | 1.10x |
+| NibbleCore NEON v1 | 63.92 ms | 51.56 GB/s | **3.05x** |
+| NibbleCore NEON v2 | 57.02 ms | 57.80 GB/s | **3.42x** |
 
 All implementations produce bit-identical output (max diff = 0.00).
 
@@ -73,8 +73,8 @@ make versus   # Sprint 4: head-to-head vs llama.cpp
 ## Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/llm-surgeon.git
-cd llm-surgeon
+git clone https://github.com/Aawegg/nibblecore.git
+cd nibblecore
 make
 
 # Download a small model to test with (~90MB)
