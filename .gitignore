@@ -1,0 +1,11 @@
+# Compiled binaries
+surgeon
+demo
+loader
+compare
+
+# Model files (too large for git)
+models/*.gguf
+
+# macOS
+.DS_Store
